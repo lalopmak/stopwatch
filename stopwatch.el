@@ -4,6 +4,8 @@
 
 ;; Author: tequilasunset <tequilasunset.mac@gmail.com>
 ;; Keywords: time, stopwatch, convenience
+
+;; Forked: Copyright (C) 2013 
 (defconst stopwatch-version "0.2")
 
 ;; This program is free software: you can redistribute it and/or modify
@@ -33,7 +35,7 @@
 (defun stopwatch (time1 &optional time2)
   "Calculate the time between TIME1 and TIME2,
 If TIME2 is ommitted, compare with a current time."
-  (destructuring-bind (t10 t11 t12 t20 t21 t22)
+  (destructuring-bind (t10 t11 t12 t13 t20 t21 t22 t23)
       (append (stopwatch-formatting time1)
               (if time2
                   (stopwatch-formatting time2)
