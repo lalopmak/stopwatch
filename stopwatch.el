@@ -6,7 +6,7 @@
 ;; Keywords: time, stopwatch, convenience
 
 ;; Forked: Copyright (C) 2013 
-(defconst stopwatch-version "0.2")
+(defconst stopwatch-version "0.21")
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
