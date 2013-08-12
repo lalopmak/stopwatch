@@ -45,14 +45,26 @@ If TIME2 is ommitted, compare with a current time."
 
 (defmacro stopwatch-define-unit-fn (unit &rest divisors)
   "Define the function `stopwatch-by-UNIT'."
-  `(defun ,(intern (format "stopwatch-by-%s" unit))
-     (time1 &optional time2 integer)
-     ,(format "Calculate the time by %s.
+  `(progn (defun ,(intern (format "stopwatch-by-%s" unit))
+             (time1 &optional time2 integer)
+             ,(format "Calculate the time by %s.
 If TIME2 is nil, compare with a current time.
 Third optional argument INTEGER specifies whether
 to return integer or float." unit)
-     (/ (funcall (if integer 'identity 'float)
-                 (stopwatch time1 time2)) ,@divisors)))
+             (/ (funcall (if integer 'identity 'float)
+                         (stopwatch time1 time2)) ,@divisors))
+;;            (defmacro ,(intern (format "with-stopwatch-%s" unit)) 
+;;              (message &rest body)
+;;              "Evaluate BODY with calculating the processing time of it
+;; by millisecond, then return the value of BODY and display
+;; the time with MESSAGE."
+;;              (declare (indent 1))
+;;              `(let ((msg (message "Running %s..." ,message))
+;;                     (start (current-time))
+;;                     (val (progn ,@body)))
+;;                 (message "%sdone [%s ms]" msg (,(intern (format "stopwatch-by-%s" unit)) start))
+;;                 val))
+))
 
 (stopwatch-define-unit-fn ms   1000)
 (stopwatch-define-unit-fn sec  1000 1000)
@@ -68,7 +80,7 @@ the time with MESSAGE."
   `(let ((msg (message "Running %s..." ,message))
          (start (current-time))
          (val (progn ,@body)))
-     (message "%sdone [%s ms]" msg (stopwatch-by-ms start))
+     (message "%sdone [%.2f s]" msg (stopwatch-by-sec start))
      val))
 
 (provide 'stopwatch)
