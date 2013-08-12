@@ -1,7 +1,7 @@
 stopwatch
 =========
 
-Stopwatch features for emacs.  Forked from &lt;https://bitbucket.org/tequilasunset/stopwatch>.  GPLv3.
+Stopwatch features for emacs.  Forked from https://bitbucket.org/tequilasunset/stopwatch.  GPLv3.
 
 
 Disclaimer
